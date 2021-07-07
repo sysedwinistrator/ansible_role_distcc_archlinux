@@ -1,0 +1,12 @@
+- name: restart distccd
+  ansible.builtin.systemd:
+    name: distccd
+    state: restarted
+- name: restart distccd-armv8
+  ansible.builtin.systemd:
+    name: distccd-armv8
+    state: restarted
+- name: restart distccd-x86_64
+  ansible.builtin.systemd:
+    name: distccd-x86_64
+    state: restarted

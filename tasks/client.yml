@@ -1,0 +1,24 @@
+- name: Get native march
+  ansible.builtin.shell:
+    cmd: gcc -march=native -E -v - </dev/null 2>&1 | grep cc1 | sed -n 's/.*-march=//p'
+  register: march
+- name: makepkg.conf
+  template:
+    src: makepkg.{{ ansible_architecture }}.{{ item.mode }}.j2
+    dest: /etc/makepkg{{ item.suffix }}.conf
+    owner: root
+    mode: 0644
+  with_items:
+    - { mode: 'pump', suffix: '' }
+    - { mode: 'plain', suffix: '-plain' }
+    - { mode: 'nodistcc', suffix: '-nodistcc' }
+- name: makepkg-baseline.conf
+  template:
+    src: makepkg.{{ ansible_architecture }}.{{ item.mode }}.baseline.j2
+    dest: /etc/makepkg-baseline{{ item.suffix }}.conf
+    owner: root
+    mode: 0644
+  with_items:
+    - { mode: 'pump', suffix: '' }
+    - { mode: 'plain', suffix: '-plain' }
+    - { mode: 'nodistcc', suffix: '-nodistcc' }

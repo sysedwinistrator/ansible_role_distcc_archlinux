@@ -1,0 +1,7 @@
+distcc_ports:
+  host_x86_64:
+    target_x86_64: 3632
+    target_aarch64: 3636
+  host_aarch64:
+    target_aarch64: 3632
+    target_x86_64: 3637
