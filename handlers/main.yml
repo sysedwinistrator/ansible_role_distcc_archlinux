@@ -1,3 +1,4 @@
+---
 - name: restart distccd
   ansible.builtin.systemd:
     name: distccd
@@ -10,3 +11,4 @@
   ansible.builtin.systemd:
     name: distccd-x86_64
     state: restarted
+...

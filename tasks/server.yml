@@ -1,3 +1,4 @@
+---
 - name: Install x86_64 cross-compile toolchain
   community.general.pacman:
     name: distccd-x86_64
@@ -44,3 +45,4 @@
     name: distccd-armv8
     enabled: yes
   when: ansible_architecture == "x86_64"
+...
