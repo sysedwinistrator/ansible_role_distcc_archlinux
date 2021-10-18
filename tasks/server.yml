@@ -15,20 +15,20 @@
   ansible.builtin.lineinfile:
     path: /etc/conf.d/distccd
     regexp: '^DISTCC_ARGS='
-    line: DISTCC_ARGS="--allow-private --log-level error --log-file /tmp/distccd.log"
+    line: DISTCC_ARGS="-N 19 --allow-private --log-level error --log-file /tmp/distccd.log"
   notify: restart distccd
 - name: Allow private subnets (x86_64 cross)
   ansible.builtin.lineinfile:
     path: /etc/conf.d/distccd-x86_64
     regexp: '^DISTCC_ARGS='
-    line: DISTCC_ARGS="--allow-private --log-level error --log-file /tmp/distccd-x86_64.log --port 3637"
+    line: DISTCC_ARGS="-N 19 --allow-private --log-level error --log-file /tmp/distccd-x86_64.log --port 3637"
   notify: restart distccd-x86_64
   when: ansible_architecture == "aarch64"
 - name: Allow private subnets (armv8 cross)
   ansible.builtin.lineinfile:
     path: /etc/conf.d/distccd-armv8
     regexp: '^DISTCC_ARGS='
-    line: DISTCC_ARGS="--allow-private --log-level error --log-file /tmp/distccd-armv8.log --port 3636"
+    line: DISTCC_ARGS="-N 19 --allow-private --log-level error --log-file /tmp/distccd-armv8.log --port 3636"
   notify: restart distccd-armv8
   when: ansible_architecture == "x86_64"
 - name: Enable distccd
